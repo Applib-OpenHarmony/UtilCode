@@ -26,19 +26,17 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           LANG: JS
         uses: Applib-OpenHarmony/OpenHarmony-build@v9.15
-      - uses: mathrix-education/sonar-scanner@master
-        with:
-          version: 4.2.0.1873 # required
-          typescript: true
-          scan: true
-          args: --debug -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with: 
           name: assets-for-download
           path: build\outputs\hap\debug\phone
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Analyze with SonarCloud
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: ${{ github.workspace }}
+          args: >
+            -Dsonar.organization=Applib-OpenHarmony_OpenHarmonyUtilCode
+            -Dsonar.projectKey=applib-openharmony
+            -Dsonar.sources=.
+            -Dsonar.verbose=true
