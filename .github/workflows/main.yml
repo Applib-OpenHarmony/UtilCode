@@ -31,6 +31,10 @@ jobs:
         with: 
           name: assets-for-download
           path: build\outputs\hap\debug\phone
+  sonarjob:
+    runs-on: ubuntu-latest
+    name: sonar
+    steps:
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         with:
