@@ -36,6 +36,9 @@ jobs:
     name: sonar
     steps:
       - name: Analyze with SonarCloud
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         uses: sonarsource/sonarcloud-github-action@master
         with:
           projectBaseDir: ${{ github.workspace }}
