@@ -45,5 +45,5 @@ jobs:
           args: >
             -Dsonar.organization=Applib-OpenHarmony_OpenHarmonyUtilCode
             -Dsonar.projectKey=applib-openharmony
-            -Dsonar.sources=${{ github.workspace }}/entry
+            -Dsonar.sources=${{ github.workspace }}
             -Dsonar.verbose=true
