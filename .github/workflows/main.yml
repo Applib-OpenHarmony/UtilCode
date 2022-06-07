@@ -49,9 +49,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         uses: sonarsource/sonarcloud-github-action@master
         with:
-          projectBaseDir: /home/runner/work/OpenHarmonyUtilCode/OpenHarmonyUtilCode
+          projectBaseDir: /home/runner/work/OpenHarmonyUtilCode/
           args: >
             -Dsonar.organization=Applib-OpenHarmony_OpenHarmonyUtilCode
             -Dsonar.projectKey=applib-openharmony
-            -Dsonar.sources=.
+            -Dsonar.sources=OpenHarmonyUtilCode
             -Dsonar.verbose=true
