@@ -35,6 +35,9 @@ jobs:
     runs-on: ubuntu-latest
     name: sonar
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Analyze with SonarCloud
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
