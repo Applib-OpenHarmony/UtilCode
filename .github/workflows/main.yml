@@ -25,33 +25,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           LANG: JS
-        uses: Applib-OpenHarmony/OpenHarmony-build@v9.15
+        uses: Applib-OpenHarmony/OpenHarmony-build@v9.16
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with: 
           name: assets-for-download
           path: build\outputs\hap\debug\phone
-  sonarjob:
-    runs-on: ubuntu-latest
-    name: sonar
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: command
-        working-directory: ${{ github.workspace }}
-        run: |
-              pwd
-              ls -l
-      - name: Analyze with SonarCloud
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        uses: sonarsource/sonarcloud-github-action@master
-        with:
-          projectBaseDir: .
-          args: >
-            -Dsonar.organization=Applib-OpenHarmony_OpenHarmonyUtilCode
-            -Dsonar.projectKey=applib-openharmony
-            -Dsonar.sources=${{ github.workspace }}
-            -Dsonar.verbose=true
