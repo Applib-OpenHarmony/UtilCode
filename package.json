@@ -14,5 +14,8 @@
     "@ohos/hvigor": "1.0.6",
     "@ohos/hvigor-ohos-plugin": "1.0.6",
     "@ohos/utilcode": "file:utilcode"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.33"
   }
 }

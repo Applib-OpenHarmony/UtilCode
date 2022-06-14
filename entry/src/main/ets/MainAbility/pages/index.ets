@@ -19,13 +19,23 @@ import router from '@system.router';
 @Component
 struct Index {
   build() {
-    Row() {
-      Column() {
-        Button('Clean Utils')
-          .width(400)
-          .height(50)
-          .onClick(() => router.push({ uri: "pages/CleanUtilsSample" }))
-      }.width('100%')
-    }.height('100%')
+    Column() {
+      Row() {
+        Column() {
+          Button('Clean Utils')
+            .width('70%')
+            .height(50)
+            .onClick(() => router.push({ uri: "pages/CleanUtilsSample" }))
+        }.width('100%')
+      }.height('50%')
+      Row() {
+        Column() {
+          Button('Array Utils')
+            .width('70%')
+            .height(50)
+            .onClick(() => router.push({ uri: "pages/ArrayUtilsSample" }))
+        }.width('100%')
+      }.height('50%')
+    }.width('90%').height('100%')
+   }
   }
-}
