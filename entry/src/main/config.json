@@ -57,13 +57,26 @@
         "pages": [
           "pages/index",
           "pages/CleanUtilsSample",
-          "pages/ArrayUtilsSample"
+          "pages/ArrayUtilsSample",
+          "pages/LocationUtilsSample"
         ],
         "name": ".MainAbility",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": false
         }
+      }
+    ],
+    "defPermissions": [
+      {
+        "name": "ohos.permission.LOCATION",
+        "grantMode": "user_grant",
+        "label": "Location Data"
+       },
+      {
+        "name" : "ohos.permission.LOCATION_IN_BACKGROUND",
+        "grantMode": "user_grant",
+        "label": "Location In Background"
       }
     ]
   }

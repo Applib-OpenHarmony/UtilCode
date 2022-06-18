@@ -28,6 +28,7 @@ struct Index {
             .onClick(() => router.push({ uri: "pages/CleanUtilsSample" }))
         }.width('100%')
       }.height('50%')
+
       Row() {
         Column() {
           Button('Array Utils')
@@ -36,6 +37,15 @@ struct Index {
             .onClick(() => router.push({ uri: "pages/ArrayUtilsSample" }))
         }.width('100%')
       }.height('50%')
+
+      Row() {
+        Column() {
+          Button('Location Utils')
+            .width('70%')
+            .height(50)
+            .onClick(() => router.push({ uri: "pages/LocationUtilsSample" }))
+        }.width('100%')
+      }.height('50%')
     }.width('90%').height('100%')
-   }
   }
+}
