@@ -263,7 +263,7 @@ export class ArrayUtils {
       }
 
    static contains<T> (array: T[], objectToFind: T): boolean {
-          return ArrayUtils.indexOf<T>(array, objectToFind) != SArrayUtils.INDEX_NOT_FOUND;
+          return ArrayUtils.indexOf<T>(array, objectToFind) != ArrayUtils.INDEX_NOT_FOUND;
       }
 
    static sort<T> (array: T[], comparator: (a: T, b: T) => number) {

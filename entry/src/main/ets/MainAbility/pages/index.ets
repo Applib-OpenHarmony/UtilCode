@@ -27,7 +27,7 @@ struct Index {
             .height(50)
             .onClick(() => router.push({ uri: "pages/CleanUtilsSample" }))
         }.width('100%')
-      }.height('50%')
+      }.height('30%')
 
       Row() {
         Column() {
@@ -36,7 +36,7 @@ struct Index {
             .height(50)
             .onClick(() => router.push({ uri: "pages/ArrayUtilsSample" }))
         }.width('100%')
-      }.height('50%')
+      }.height('30%')
 
       Row() {
         Column() {
