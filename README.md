@@ -4,7 +4,7 @@ OpenHarmonyUtilCode library is a ETS Library that supports common utility functi
 
 ## Installation Instructions
 
-    npm install https://github.com/Applib-OpenHarmony/OpenHarmonyUtilCode
+    npm install https://github.com/Applib-OpenHarmony/UtilCode
 
 #### After Installation, For Local Demonstration, Run
 
@@ -12,6 +12,7 @@ OpenHarmonyUtilCode library is a ETS Library that supports common utility functi
     
 ## Directory Structure
 
+````
 |---- UtilCode
 |     |---- entry  #Sample Code Folder
 |           |---- src
@@ -30,6 +31,7 @@ OpenHarmonyUtilCode library is a ETS Library that supports common utility functi
 |                                   |---- CleanUtils.ets
 |                                   |---- LocationUtils.ets
 |           |---- index.ets
+````
 
 ## Clean Utils
 
