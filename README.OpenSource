@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "UtilCode",
+        "License": "Apache-2.0 License",
+        "License File": " LICENSE ",
+        "Version Number": "2.3.0",
+        "Owner" : "Blankj"
+        "Upstream URL": "https://github.com/Blankj/AndroidUtilCode",
+        "Description": "A Library that supports many Utility functions"
+    }
+]
