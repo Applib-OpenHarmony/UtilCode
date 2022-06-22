@@ -29,6 +29,10 @@ struct Index {
           .width(500)
           .height(60)
           .onClick(() => router.push({ uri: "pages/LocationUtilsSample" }))
+        Button('Click Utils')
+          .width(500)
+          .height(60)
+          .onClick(() => router.push({ uri: "pages/ClickUtilsSample" }))
       }.width('100%')
     }.height('100%')
   }
