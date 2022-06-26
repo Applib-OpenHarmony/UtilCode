@@ -14,10 +14,6 @@
  */
 
 import { ArrayUtils } from '@ohos/utilcode';
-import prompt from '@system.prompt';
-import dataStorage from '@ohos.data.storage';
-import ability_featureAbility from '@ohos.ability.featureAbility';
-import dataRdb from '@ohos.data.rdb';
 
 @Entry
 @Component
@@ -42,11 +38,11 @@ struct Index {
     return 'array1: ' + ArrayUtils.isEmpty(this.array1) + ' | array2: ' + ArrayUtils.isEmpty(this.array2);
   }
 
-  isLengthEq() {
+  isLengthEqual() {
     return 'array1.len == array2.len : ' + ArrayUtils.isSameLength(this.array1, this.array2);
   }
 
-  isEq() {
+  isEqual() {
     return ArrayUtils.equals(this.array1, this.array2) ? 'Both are equal' : 'Both are not equal';
   }
 
@@ -71,7 +67,6 @@ struct Index {
     return;
   }
 
-
   sortAsc() {
     let comp = (a,b) => (a > b ? 1 : -1);
     ArrayUtils.sort(this.array2, comp);
@@ -94,65 +89,42 @@ struct Index {
       Column() {
         Row() {
           Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-            Flex({
-              direction: FlexDirection.Row,
-              alignItems: ItemAlign.Center,
-              justifyContent: FlexAlign.SpaceEvenly
-            }) {
+            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
               TextInput({ placeholder: 'Array 1  (String values)' })
                 .type(InputType.Normal)
                 .enterKeyType(EnterKeyType.Done)
                 .id('array1')
                 .fontSize(1)
                 .onChange((value: string) => {
-                  this.array1 = value.split(" ");
-                })
-                .onSubmit((enterKey) => {
-                  console.log('Array 1 Created')
-                })
+                  this.array1 = value.split(" "); })
+                .onSubmit((enterKey) => { console.log('Array 1 Created') })
+
               Button('Create Array1', { type: ButtonType.Normal, stateEffect: true })
-                .onClick((event: ClickEvent) => {
-                  console.log('Array 1: ' + this.array1);
-                })
+                .onClick((event: ClickEvent) => { console.log('Array 1: ' + this.array1); })
                 .borderWidth(2)
                 .borderRadius(10)
             }
 
-            Flex({
-              direction: FlexDirection.Row,
-              alignItems: ItemAlign.Center,
-              justifyContent: FlexAlign.SpaceEvenly
-            }) {
-
+            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
               TextInput({ placeholder: 'Array 2 (String values)' })
                 .type(InputType.Normal)
                 .enterKeyType(EnterKeyType.Done)
                 .id('array2')
                 .fontSize(1)
-                .onChange((value: string) => {
-                  this.array2 = value.split(" ");
-                })
-                .onSubmit((enterKey) => {
-                  console.log('Array 2 Created')
-                })
+                .onChange((value: string) => { this.array2 = value.split(" "); })
+                .onSubmit((enterKey) => { console.log('Array 2 Created') })
 
               Button('Create Array2', { type: ButtonType.Normal, stateEffect: true })
                 .onClick((event: ClickEvent) => {
                   console.log('Array 2: ' + this.array2);
                   console.log('' + ArrayUtils.removeElement(this.array1, 22));
-
                 })
                 .borderWidth(2)
                 .borderRadius(10)
             }
 
             Scroll(this.scroller) {
-              Flex({
-                direction: FlexDirection.Row,
-                alignItems: ItemAlign.Center,
-                justifyContent: FlexAlign.SpaceAround
-              }) {
-
+              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
                 Button('Merge 2 Arrays', { type: ButtonType.Normal, stateEffect: true })
                   .onClick((event: ClickEvent) => {
                     console.log('merge arrays');
@@ -181,7 +153,7 @@ struct Index {
                 Button('is length equal?', { type: ButtonType.Normal, stateEffect: true })
                   .onClick((event: ClickEvent) => {
                     console.log('length_eq');
-                    this.data = this.isLengthEq();
+                    this.data = this.isLengthEqual();
                   })
                   .margin(5)
                   .borderRadius(10)
@@ -189,7 +161,7 @@ struct Index {
                 Button('is both arrays equal?', { type: ButtonType.Normal, stateEffect: true })
                   .onClick((event: ClickEvent) => {
                     console.log('isEqual');
-                    this.data = this.isEq();
+                    this.data = this.isEqual();
                   })
                   .margin(5)
                   .borderRadius(10)
@@ -220,58 +192,39 @@ struct Index {
                   })
                   .margin(5)
                   .borderRadius(10)
-
                 }
             }.scrollable(ScrollDirection.Horizontal).scrollBar(BarState.On)
              .scrollBarColor(Color.Gray).scrollBarWidth(100)
 
-              Text(this.data)
+            Text(this.data)
                 .fontSize(20)
 
-            Flex({
-              direction: FlexDirection.Row,
-              alignItems: ItemAlign.Center,
-              justifyContent: FlexAlign.SpaceEvenly
-            }) {
+            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
               TextInput({ placeholder: 'Element to remove from array 1' })
                 .type(InputType.Normal)
                 .enterKeyType(EnterKeyType.Done)
-                .id('eltoberemoved')
+                .id('elementremoved')
                 .fontSize(1)
-                .onChange((value: string) => {
-                  this.element = value;
-                })
-                .onSubmit((enterKey) => {
-                  console.log('Removing element from array1...')
-                })
+                .onChange((value: string) => { this.element = value; })
+                .onSubmit((enterKey) => { console.log('Removing element from array1...') })
+
               Button('Remove element', { type: ButtonType.Normal, stateEffect: true })
-                .onClick((event: ClickEvent) => {
-                  this.removeElementArray1(this.element);
-                })
+                .onClick((event: ClickEvent) => { this.removeElementArray1(this.element); })
                 .borderWidth(2)
                 .borderRadius(10)
             }
 
-            Flex({
-              direction: FlexDirection.Row,
-              alignItems: ItemAlign.Center,
-              justifyContent: FlexAlign.SpaceEvenly
-            }) {
+            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
               TextInput({ placeholder: 'Element to search in array 1' })
                 .type(InputType.Normal)
                 .enterKeyType(EnterKeyType.Done)
-                .id('eltobesearched')
+                .id('elementsearched')
                 .fontSize(1)
-                .onChange((value: string) => {
-                  this.element = value;
-                })
-                .onSubmit((enterKey) => {
-                  console.log('Searching element in array1...')
-                })
+                .onChange((value: string) => { this.element = value; })
+                .onSubmit((enterKey) => { console.log('Searching element in array1...') })
+
               Button('Search', { type: ButtonType.Normal, stateEffect: true })
-                .onClick((event: ClickEvent) => {
-                  this.searchElementArray1(this.element);
-                })
+                .onClick((event: ClickEvent) => { this.searchElementArray1(this.element); })
                 .borderWidth(2)
                 .borderRadius(10)
             }

@@ -15,7 +15,6 @@
 
 export class ArrayUtils {
   constructor() {
-
   }
 
   static readonly INDEX_NOT_FOUND = -1;
@@ -80,9 +79,11 @@ export class ArrayUtils {
   }
 
   static reverse<Type>(array: Type[]) {
+
     if (array == null || array == undefined) {
       return;
     }
+
     let i = 0;
     let j = ArrayUtils.getLength(array) - 1;
     let tmp: Type;
@@ -113,9 +114,11 @@ export class ArrayUtils {
     if (array == null || array == undefined) {
       return null;
     }
+
     if (startIndexInclusive < 0) {
       startIndexInclusive = 0;
     }
+
     let length = ArrayUtils.getLength(array);
     if (endIndexExclusive > length) {
       endIndexExclusive = length;
@@ -140,6 +143,7 @@ export class ArrayUtils {
       } else {
       }
     }
+
     return <T[]> ArrayUtils.realAddOne<T>(array, element);
   }
 
@@ -171,15 +175,14 @@ export class ArrayUtils {
     for (let i = 0; i < ArrayUtils.getLength(array2); ++i) {
       array1.push(array2[i])
     }
+
     return array1;
   }
 
   static insert<T> (array1: T[], index: number, array2: T[]): T[] {
-
     if (array1 == null && array2 == null)
       return null;
     return ArrayUtils.realInsertArr(array1, index, array2);
-
   }
 
    private static realInsertArr (array1, index: number, array2) {
@@ -203,11 +206,9 @@ export class ArrayUtils {
     }
 
   static insertElement<T> (array1: T[], index: number, element: T): T[] {
-
     if (array1 == null && element == null)
        return null;
     return ArrayUtils.realInsertArr(array1, index, [element]);
-
   }
 
   static remove<T> (array: T[], index: number): T[] {
@@ -228,7 +229,7 @@ export class ArrayUtils {
         return ArrayUtils.remove<T>(array, index);
     }
 
-   static indexOf<T>(array: T[],objectToFind: T, startIndex: number = 0): number {
+  static indexOf<T>(array: T[],objectToFind: T, startIndex: number = 0): number {
         if (array == null) {
             return ArrayUtils.INDEX_NOT_FOUND;
         }
