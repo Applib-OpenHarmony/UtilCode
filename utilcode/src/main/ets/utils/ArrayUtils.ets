@@ -71,9 +71,9 @@ export class ArrayUtils {
     if (ArrayUtils.getLength(a) != ArrayUtils.getLength(a2))
     return false;
 
-    for (j = 0; j < ArrayUtils.getLength(a); ++j) {
+    for (j = 0, i = 0; j < ArrayUtils.getLength(a); ++j, ++i) {
       if (a[j] !== a2[i])
-      return false;
+        return false;
     }
     return true;
   }
@@ -124,12 +124,12 @@ export class ArrayUtils {
       endIndexExclusive = length;
     }
     let newSize = endIndexExclusive - startIndexInclusive;
-    let subArray: T[];
+    let subArray = ArrayUtils.newArray<T>([]);
     if (newSize <= 0) {
       return ArrayUtils.newArray(subArray);
     }
     for (let i = 0; i < newSize; ++i) {
-      subArray.push(array[startIndexInclusive + i]);
+     subArray = ArrayUtils.realAddOne<T>(subArray, array[startIndexInclusive + i]);
     }
     return subArray;
   }

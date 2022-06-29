@@ -21,7 +21,7 @@ struct Index {
   @State data: string = '';
   private array1: any[] = [323,32,3,23,2];
   private array2: any[] = ['d', 's', 's', 'f'];
-  private element: any = 233;
+  private element: any = 23;
   private arrayutils: ArrayUtils = new ArrayUtils();
   scroller: Scroller = new Scroller();
 
@@ -59,6 +59,7 @@ struct Index {
      console.log("Element deleted successfully");
      console.log("New array1: " + this.array1);
     }
+    return;
   }
 
   searchElementArray1( element ) {
@@ -117,7 +118,6 @@ struct Index {
               Button('Create Array2', { type: ButtonType.Normal, stateEffect: true })
                 .onClick((event: ClickEvent) => {
                   console.log('Array 2: ' + this.array2);
-                  console.log('' + ArrayUtils.removeElement(this.array1, 22));
                 })
                 .borderWidth(2)
                 .borderRadius(10)
