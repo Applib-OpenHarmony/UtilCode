@@ -24,6 +24,7 @@ export class CleanUtils {
   constructor() {
 
   }
+
   async cleanInternalCache() {
     var context = ability_featureAbility.getContext();
     var path;
@@ -86,12 +87,12 @@ export class CleanUtils {
     }
     else {
       dataRdb.deleteRdbStore(this, dbName, function (err, rdbStore) {
-        if(err){
-          console.log("Error in Deleting Database => "+err);
-          message = "Error in Deleting Database => "+err;
+        if (err) {
+          console.log("Error in Deleting Database => " + err);
+          message = "Error in Deleting Database => " + err;
         }
         console.info('Database Delete Success: =>' + dbName);
-        message = "Database Delete Success => "+dbName;
+        message = "Database Delete Success => " + dbName;
       })
     }
     return message;
@@ -119,14 +120,14 @@ export class CleanUtils {
       console.error("No Directory Path Entered");
       return "Directory Clean Fail => No Directory Path Entered";
     }
-    else{
+    else {
       var stringArray = dirPath.split('/');
-      if(stringArray.length > 0){
+      if (stringArray.length > 0) {
         fileio.rmdirSync(dirPath);
         console.log('Clean Directory Success');
-        return "Directory Clean Success => "+dirPath;
+        return "Directory Clean Success => " + dirPath;
       }
-      else{
+      else {
         console.log('Clean Directory Failed => Directory Path not valid');
         return "Clean Directory Failed => Directory Path not valid";
       }

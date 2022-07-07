@@ -19,15 +19,15 @@ import { ArrayUtils } from '@ohos/utilcode';
 @Component
 struct Index {
   @State data: string = '';
-  private array1: any[] = [323,32,3,23,2];
+  private array1: any[] = [323, 32, 3, 23, 2];
   private array2: any[] = ['d', 's', 's', 'f'];
   private element: any = 23;
   private arrayutils: ArrayUtils = new ArrayUtils();
   scroller: Scroller = new Scroller();
 
   mergeArrays() {
-   return '' + ArrayUtils.addArr<number>(ArrayUtils.newArray<number>(this.array1),
-                                         ArrayUtils.newArray<number>(this.array2));
+    return '' + ArrayUtils.addArr<number>(ArrayUtils.newArray<number>(this.array1),
+    ArrayUtils.newArray<number>(this.array2));
   }
 
   getLength() {
@@ -50,31 +50,31 @@ struct Index {
     ArrayUtils.reverse(this.array1);
   }
 
-  removeElementArray1( element ) {
+  removeElementArray1(element) {
     let res = ArrayUtils.removeElement(this.array1, element);
-     if (ArrayUtils.equals(res, this.array1)) {
-        console.log("Element not found!");
-     } else {
-     this.array1 = res;
-     console.log("Element deleted successfully");
-     console.log("New array1: " + this.array1);
+    if (ArrayUtils.equals(res, this.array1)) {
+      console.log("Element not found!");
+    } else {
+      this.array1 = res;
+      console.log("Element deleted successfully");
+      console.log("New array1: " + this.array1);
     }
     return;
   }
 
-  searchElementArray1( element ) {
+  searchElementArray1(element) {
     let res = ArrayUtils.contains(this.array1, element);
     this.data = element + " present in array1: " + res;
     return;
   }
 
   sortAsc() {
-    let comp = (a,b) => (a > b ? 1 : -1);
+    let comp = (a, b) => (a > b ? 1 : -1);
     ArrayUtils.sort(this.array2, comp);
   }
 
   sortDesc() {
-    let comp = (a,b) => (b > a ? 1 : -1);
+    let comp = (a, b) => (b > a ? 1 : -1);
     ArrayUtils.sort(this.array2, comp);
   }
 
@@ -89,31 +89,52 @@ struct Index {
 
       Column() {
         Row() {
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
+          Flex({
+            direction: FlexDirection.Column,
+            alignItems: ItemAlign.Center,
+            justifyContent: FlexAlign.SpaceBetween
+          }) {
+            Flex({
+              direction: FlexDirection.Row,
+              alignItems: ItemAlign.Center,
+              justifyContent: FlexAlign.SpaceEvenly
+            }) {
               TextInput({ placeholder: 'Array 1  (String values)' })
                 .type(InputType.Normal)
                 .enterKeyType(EnterKeyType.Done)
                 .id('array1')
                 .fontSize(1)
                 .onChange((value: string) => {
-                  this.array1 = value.split(" "); })
-                .onSubmit((enterKey) => { console.log('Array 1 Created') })
+                  this.array1 = value.split(" ");
+                })
+                .onSubmit((enterKey) => {
+                  console.log('Array 1 Created')
+                })
 
               Button('Create Array1', { type: ButtonType.Normal, stateEffect: true })
-                .onClick((event: ClickEvent) => { console.log('Array 1: ' + this.array1); })
+                .onClick((event: ClickEvent) => {
+                  console.log('Array 1: ' + this.array1);
+                })
                 .borderWidth(2)
                 .borderRadius(10)
             }
 
-            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
+            Flex({
+              direction: FlexDirection.Row,
+              alignItems: ItemAlign.Center,
+              justifyContent: FlexAlign.SpaceEvenly
+            }) {
               TextInput({ placeholder: 'Array 2 (String values)' })
                 .type(InputType.Normal)
                 .enterKeyType(EnterKeyType.Done)
                 .id('array2')
                 .fontSize(1)
-                .onChange((value: string) => { this.array2 = value.split(" "); })
-                .onSubmit((enterKey) => { console.log('Array 2 Created') })
+                .onChange((value: string) => {
+                  this.array2 = value.split(" ");
+                })
+                .onSubmit((enterKey) => {
+                  console.log('Array 2 Created')
+                })
 
               Button('Create Array2', { type: ButtonType.Normal, stateEffect: true })
                 .onClick((event: ClickEvent) => {
@@ -124,7 +145,11 @@ struct Index {
             }
 
             Scroll(this.scroller) {
-              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+              Flex({
+                direction: FlexDirection.Row,
+                alignItems: ItemAlign.Center,
+                justifyContent: FlexAlign.SpaceAround
+              }) {
                 Button('Merge 2 Arrays', { type: ButtonType.Normal, stateEffect: true })
                   .onClick((event: ClickEvent) => {
                     console.log('merge arrays');
@@ -192,45 +217,65 @@ struct Index {
                   })
                   .margin(5)
                   .borderRadius(10)
-                }
+              }
             }.scrollable(ScrollDirection.Horizontal).scrollBar(BarState.On)
-             .scrollBarColor(Color.Gray).scrollBarWidth(100)
+            .scrollBarColor(Color.Gray).scrollBarWidth(100)
 
             Text(this.data)
-                .fontSize(20)
+              .fontSize(20)
 
-            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
+            Flex({
+              direction: FlexDirection.Row,
+              alignItems: ItemAlign.Center,
+              justifyContent: FlexAlign.SpaceEvenly
+            }) {
               TextInput({ placeholder: 'Element to remove from array 1' })
                 .type(InputType.Normal)
                 .enterKeyType(EnterKeyType.Done)
                 .id('elementremoved')
                 .fontSize(1)
-                .onChange((value: string) => { this.element = value; })
-                .onSubmit((enterKey) => { console.log('Removing element from array1...') })
+                .onChange((value: string) => {
+                  this.element = value;
+                })
+                .onSubmit((enterKey) => {
+                  console.log('Removing element from array1...')
+                })
 
               Button('Remove element', { type: ButtonType.Normal, stateEffect: true })
-                .onClick((event: ClickEvent) => { this.removeElementArray1(this.element); })
+                .onClick((event: ClickEvent) => {
+                  this.removeElementArray1(this.element);
+                })
                 .borderWidth(2)
                 .borderRadius(10)
             }
 
-            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
+            Flex({
+              direction: FlexDirection.Row,
+              alignItems: ItemAlign.Center,
+              justifyContent: FlexAlign.SpaceEvenly
+            }) {
               TextInput({ placeholder: 'Element to search in array 1' })
                 .type(InputType.Normal)
                 .enterKeyType(EnterKeyType.Done)
                 .id('elementsearched')
                 .fontSize(1)
-                .onChange((value: string) => { this.element = value; })
-                .onSubmit((enterKey) => { console.log('Searching element in array1...') })
+                .onChange((value: string) => {
+                  this.element = value;
+                })
+                .onSubmit((enterKey) => {
+                  console.log('Searching element in array1...')
+                })
 
               Button('Search', { type: ButtonType.Normal, stateEffect: true })
-                .onClick((event: ClickEvent) => { this.searchElementArray1(this.element); })
+                .onClick((event: ClickEvent) => {
+                  this.searchElementArray1(this.element);
+                })
                 .borderWidth(2)
                 .borderRadius(10)
             }
           }
         }
       }.height('800%').margin(5)
-      }.height(50).margin(5)
-    }
+    }.height(50).margin(5)
+  }
 }

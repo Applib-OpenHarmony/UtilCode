@@ -20,7 +20,7 @@ export class ArrayUtils {
   static readonly INDEX_NOT_FOUND = -1;
 
   static newArray<Type>(array: Type[]): Type[] {
-    return <Type[]>array;
+    return <Type[]> array;
   }
 
   static isEmpty(array) {
@@ -73,7 +73,7 @@ export class ArrayUtils {
 
     for (j = 0, i = 0; j < ArrayUtils.getLength(a); ++j, ++i) {
       if (a[j] !== a2[i])
-        return false;
+      return false;
     }
     return true;
   }
@@ -129,21 +129,12 @@ export class ArrayUtils {
       return ArrayUtils.newArray(subArray);
     }
     for (let i = 0; i < newSize; ++i) {
-     subArray = ArrayUtils.realAddOne<T>(subArray, array[startIndexInclusive + i]);
+      subArray = ArrayUtils.realAddOne<T>(subArray, array[startIndexInclusive + i]);
     }
     return subArray;
   }
 
   static add<T>(array: T[], element: T) {
-    if (array) {
-      return <T[]> ArrayUtils.realAddOne<T>(array, element);
-    } else {
-      if (element) {
-        return <T[]> ArrayUtils.realAddOne<T>(array, element);
-      } else {
-      }
-    }
-
     return <T[]> ArrayUtils.realAddOne<T>(array, element);
   }
 
@@ -159,7 +150,7 @@ export class ArrayUtils {
   }
 
   static addArr<T>(array1: T[], array2: T[]): T[] {
-    return <T[]>ArrayUtils.realAddArr<T>(array1, array2);
+    return <T[]> ArrayUtils.realAddArr<T>(array1, array2);
   }
 
   private static realAddArr<T>(array1: T[], array2: T[]): T[] {
@@ -179,117 +170,111 @@ export class ArrayUtils {
     return array1;
   }
 
-  static insert<T> (array1: T[], index: number, array2: T[]): T[] {
+  static insert<T>(array1: T[], index: number, array2: T[]): T[] {
     if (array1 == null && array2 == null)
-      return null;
+    return null;
     return ArrayUtils.realInsertArr(array1, index, array2);
   }
 
-   private static realInsertArr (array1, index: number, array2) {
-        if (array1 == null && array2 == null) return null;
-        let len1 = ArrayUtils.getLength(array1);
-        let len2 = ArrayUtils.getLength(array2);
-        if (len1 == 0) {
-            if (index != 0) {
-                throw new RangeError("Index: " + index + ", array1 Length: 0");
-            }
-            return ArrayUtils.realCopy(array2);
-        }
-        if (len2 == 0) {
-            return ArrayUtils.realCopy(array1);
-        }
-        if (index > len1 || index < 0) {
-            throw new RangeError("Index: " + index + ", array1 Length: " + len1);
-        }
-       let joinedArray = array1.slice(0,index).push(...array2).push(array1.slice(index,len1));
-       return joinedArray;
+  private static realInsertArr(array1, index: number, array2) {
+    if (array1 == null && array2 == null) return null;
+    let len1 = ArrayUtils.getLength(array1);
+    let len2 = ArrayUtils.getLength(array2);
+    if (len1 == 0) {
+      if (index != 0) {
+        throw new RangeError("Index: " + index + ", array1 Length: 0");
+      }
+      return ArrayUtils.realCopy(array2);
     }
+    if (len2 == 0) {
+      return ArrayUtils.realCopy(array1);
+    }
+    if (index > len1 || index < 0) {
+      throw new RangeError("Index: " + index + ", array1 Length: " + len1);
+    }
+    let joinedArray = array1.slice(0, index).push(...array2).push(array1.slice(index, len1));
+    return joinedArray;
+  }
 
-  static insertElement<T> (array1: T[], index: number, element: T): T[] {
+  static insertElement<T>(array1: T[], index: number, element: T): T[] {
     if (array1 == null && element == null)
-       return null;
+    return null;
     return ArrayUtils.realInsertArr(array1, index, [element]);
   }
 
-  static remove<T> (array: T[], index: number): T[] {
-      let length = ArrayUtils.getLength(array);
-      if (index < 0 || index >= length) {
-          throw new RangeError("Index: " + index + ", Length: " + length);
-      }
-      let result: T[] =  array.slice(0,index).concat(array.slice(index + 1, length));
+  static remove<T>(array: T[], index: number): T[] {
+    let length = ArrayUtils.getLength(array);
+    if (index < 0 || index >= length) {
+      throw new RangeError("Index: " + index + ", Length: " + length);
+    }
+    let result: T[] = array.slice(0, index).concat(array.slice(index + 1, length));
 
-      return result;
+    return result;
   }
 
-  static removeElement<T> (array: T[], element: T): T[] {
-        let index = ArrayUtils.indexOf(array, element);
-        if (index == ArrayUtils.INDEX_NOT_FOUND) {
-            return ArrayUtils.copy<T>(array);
-        }
-        return ArrayUtils.remove<T>(array, index);
+  static removeElement<T>(array: T[], element: T): T[] {
+    let index = ArrayUtils.indexOf(array, element);
+    if (index == ArrayUtils.INDEX_NOT_FOUND) {
+      return ArrayUtils.copy<T>(array);
     }
+    return ArrayUtils.remove<T>(array, index);
+  }
 
-  static indexOf<T>(array: T[],objectToFind: T, startIndex: number = 0): number {
-        if (array == null) {
-            return ArrayUtils.INDEX_NOT_FOUND;
-        }
-        if (startIndex < 0) {
-            startIndex = 0;
-        }
-        if (objectToFind == null) {
-            for ( let i = startIndex; i < ArrayUtils.getLength(array); i++) {
-                if (array[i] == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (let i = startIndex; i < ArrayUtils.getLength(array); i++) {
-                if (objectToFind == array[i]) {
-                    return i;
-                }
-            }
-        }
-        return ArrayUtils.INDEX_NOT_FOUND;
+  static indexOf<T>(array: T[], objectToFind: T, startIndex: number = 0): number {
+    if (array == null) {
+      return ArrayUtils.INDEX_NOT_FOUND;
     }
-
-   static lastIndexOf<T>(array: T[], objectToFind: T, startIndex: number = Number.MAX_VALUE): number {
-        if (array == null) {
-            return ArrayUtils.INDEX_NOT_FOUND;
+    if (startIndex < 0) {
+      startIndex = 0;
+    }
+    if (objectToFind == null) {
+      for (let i = startIndex; i < ArrayUtils.getLength(array); i++) {
+        if (array[i] == null) {
+          return i;
         }
-        let len = ArrayUtils.getLength(array);
-        if (startIndex < 0) {
-            return ArrayUtils.INDEX_NOT_FOUND;
-        } else if (startIndex >= len) {
-            startIndex = len - 1;
-        }
-        if (objectToFind == null) {
-            for (let i = startIndex; i >= 0; i--) {
-                if (array[i] == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (let i = startIndex; i >= 0; i--) {
-                if (objectToFind == array[i]) {
-                    return i;
-                }
-            }
-        }
-        return ArrayUtils.INDEX_NOT_FOUND;
       }
-
-   static contains<T> (array: T[], objectToFind: T): boolean {
-          return ArrayUtils.indexOf<T>(array, objectToFind) != ArrayUtils.INDEX_NOT_FOUND;
+    } else {
+      for (let i = startIndex; i < ArrayUtils.getLength(array); i++) {
+        if (objectToFind == array[i]) {
+          return i;
+        }
       }
-
-   static sort<T> (array: T[], comparator: (a: T, b: T) => number) {
-        if (array == null || array.length < 2) return;
-        array.sort(comparator);
     }
+    return ArrayUtils.INDEX_NOT_FOUND;
+  }
 
+  static lastIndexOf<T>(array: T[], objectToFind: T, startIndex: number = Number.MAX_VALUE): number {
+    if (array == null) {
+      return ArrayUtils.INDEX_NOT_FOUND;
+    }
+    let len = ArrayUtils.getLength(array);
+    if (startIndex < 0) {
+      return ArrayUtils.INDEX_NOT_FOUND;
+    } else if (startIndex >= len) {
+      startIndex = len - 1;
+    }
+    if (objectToFind == null) {
+      for (let i = startIndex; i >= 0; i--) {
+        if (array[i] == null) {
+          return i;
+        }
+      }
+    } else {
+      for (let i = startIndex; i >= 0; i--) {
+        if (objectToFind == array[i]) {
+          return i;
+        }
+      }
+    }
+    return ArrayUtils.INDEX_NOT_FOUND;
+  }
 
+  static contains<T>(array: T[], objectToFind: T): boolean {
+    return ArrayUtils.indexOf<T>(array, objectToFind) != ArrayUtils.INDEX_NOT_FOUND;
+  }
 
-
-
-
+  static sort<T>(array: T[], comparator: (a: T, b: T) => number) {
+    if (array == null || array.length < 2) return;
+    array.sort(comparator);
+  }
 }
