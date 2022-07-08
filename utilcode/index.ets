@@ -13,4 +13,7 @@
 * limitations under the License.
 */
 
-export { CleanUtils } from './src/main/ets/utils/CleanUtils'
+export { CleanUtils } from './src/main/ets/components/MainPage/CleanUtils'
+export { LocationUtils } from './src/main/ets/components/MainPage/LocationUtils'
+export { myLocationListener } from './src/main/ets/components/MainPage/LocationUtils'
+export { OnLocationChangeListener } from './src/main/ets/components/MainPage/LocationUtils'

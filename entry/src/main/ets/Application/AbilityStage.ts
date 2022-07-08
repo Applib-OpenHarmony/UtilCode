@@ -13,19 +13,10 @@
 * limitations under the License.
 */
 
-import router from '@system.router';
+import AbilityStage from "@ohos.application.AbilityStage"
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Column() {
-        Button('Clean Utils')
-          .width(400)
-          .height(50)
-          .onClick(() => router.push({ uri: "pages/CleanUtilsSample" }))
-      }.width('100%')
-    }.height('100%')
-  }
+export default class MyAbilityStage extends AbilityStage {
+    onCreate() {
+        console.log("[Demo] MyAbilityStage onCreate")
+    }
 }

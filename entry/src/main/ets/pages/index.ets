@@ -13,8 +13,23 @@
 * limitations under the License.
 */
 
-import abilityTest from './Ability.test'
+import router from '@system.router';
 
-export default function testsuite() {
-  abilityTest()
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('Clean Utils')
+          .width(400)
+          .height(50)
+          .onClick(() => router.push({ uri: "pages/CleanUtilsSample" }))
+        Button('Location Utils')
+          .width(500)
+          .height(60)
+          .onClick(() => router.push({ uri: "pages/LocationUtilsSample" }))
+      }.width('100%')
+    }.height('100%')
+  }
 }

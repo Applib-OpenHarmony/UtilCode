@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "utilcode",
+    "type": "har",
+    "deviceTypes": [
+      "phone",
+      "tablet"
+    ],
+    "uiSyntax": "ets"
+  }
+}
