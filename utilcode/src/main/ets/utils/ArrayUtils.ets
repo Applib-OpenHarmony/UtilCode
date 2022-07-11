@@ -17,24 +17,26 @@ export class ArrayUtils {
   constructor() {
   }
 
-  static readonly INDEX_NOT_FOUND = -1;
+  private static readonly INDEX_NOT_FOUND = -1;
 
   static newArray<Type>(array: Type[]): Type[] {
     return <Type[]> array;
   }
 
   static isEmpty(array) {
-    if (array)
-    return array.length == 0;
-    else
-    return true;
+    if (array) {
+      return array.length == 0;
+    } else {
+      return true;
+    }
   }
 
   static getLength(array) {
-    if (array)
-    return array.length;
-    else
-    return 0;
+    if (array) {
+      return array.length;
+    } else {
+      return 0
+    }
   }
 
   static isSameLength(array1, array2) {
@@ -42,16 +44,32 @@ export class ArrayUtils {
   }
 
   static getValue(array, index: number, defaultValue: number = null) {
-    if (array == null || array == undefined) return defaultValue;
+    if (array == null || array == undefined) {
+      return defaultValue;
+    }
+    if (index >= ArrayUtils.getLength(array)) {
+      return;
+    }
+    if (index < 0) {
+      return;
+    }
     try {
       return array[index];
-    } catch (e) {
+    } catch (exp) {
       return defaultValue;
     }
   }
 
   static setValue(array, index: number, value) {
-    if (array == null || array == undefined) return;
+    if (array == null || array == undefined) {
+      return;
+    }
+    if (index < 0) {
+      return;
+    }
+    if (index >= ArrayUtils.getLength(array)) {
+      return;
+    }
     array[index] = value;
   }
 
@@ -59,31 +77,32 @@ export class ArrayUtils {
     var i: any, j: any;
 
     if (a == null && a2 == null) {
-
-      if (typeof (a) == typeof (a2))
-      return true;
-      else
+      if (typeof (a) == typeof (a2)) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    } else if (a == null || a2 == null) {
       return false;
+    }
 
-    } else if (a == null || a2 == null)
-    return false;
-
-    if (ArrayUtils.getLength(a) != ArrayUtils.getLength(a2))
-    return false;
+    if (ArrayUtils.getLength(a) != ArrayUtils.getLength(a2)) {
+      return false;
+    }
 
     for (j = 0, i = 0; j < ArrayUtils.getLength(a); ++j, ++i) {
-      if (a[j] !== a2[i])
-      return false;
+      if (a[j] !== a2[i]) {
+        return false;
+      }
     }
     return true;
   }
 
   static reverse<Type>(array: Type[]) {
-
     if (array == null || array == undefined) {
       return;
     }
-
     let i = 0;
     let j = ArrayUtils.getLength(array) - 1;
     let tmp: Type;
@@ -97,12 +116,16 @@ export class ArrayUtils {
   }
 
   static copy<Type>(array: Type[]): Type[] {
-    if (array == null || array == undefined) return null;
+    if (array == null || array == undefined) {
+      return null;
+    }
     return ArrayUtils.subArray(array, 0, ArrayUtils.getLength(array));
   }
 
   private static realCopy<T>(array: T[]): T[] {
-    if (array == null || array == undefined) return null;
+    if (array == null || array == undefined) {
+      return null;
+    }
     return ArrayUtils.realSubArray<T>(array, 0, ArrayUtils.getLength(array));
   }
 
@@ -120,7 +143,7 @@ export class ArrayUtils {
     }
 
     let length = ArrayUtils.getLength(array);
-    if (endIndexExclusive > length) {
+    if (endIndexExclusive > length || endIndexExclusive < 0) {
       endIndexExclusive = length;
     }
     let newSize = endIndexExclusive - startIndexInclusive;
@@ -139,9 +162,10 @@ export class ArrayUtils {
   }
 
   private static realAddOne<T>(array: T[], element: T): T[] {
-    if (array != undefined) {
-      if (array && element)
-      array.push(element);
+    if (array != null && array != undefined) {
+      if (array && element) {
+        array.push(element);
+      }
       return array;
     }
     let newArray: T[];
@@ -154,8 +178,9 @@ export class ArrayUtils {
   }
 
   private static realAddArr<T>(array1: T[], array2: T[]): T[] {
-    if (array1 == null && array2 == null) return null;
-
+    if (array1 == null && array2 == null) {
+      return null;
+    }
     if (array1 == null) {
       return ArrayUtils.realCopy<T>(array2);
     }
@@ -166,7 +191,6 @@ export class ArrayUtils {
     for (let i = 0; i < ArrayUtils.getLength(array2); ++i) {
       array1.push(array2[i])
     }
-
     return array1;
   }
 
@@ -197,8 +221,9 @@ export class ArrayUtils {
   }
 
   static insertElement<T>(array1: T[], index: number, element: T): T[] {
-    if (array1 == null && element == null)
-    return null;
+    if (array1 == null && element == null) {
+      return null;
+    }
     return ArrayUtils.realInsertArr(array1, index, [element]);
   }
 
@@ -208,7 +233,6 @@ export class ArrayUtils {
       throw new RangeError("Index: " + index + ", Length: " + length);
     }
     let result: T[] = array.slice(0, index).concat(array.slice(index + 1, length));
-
     return result;
   }
 
@@ -221,7 +245,7 @@ export class ArrayUtils {
   }
 
   static indexOf<T>(array: T[], objectToFind: T, startIndex: number = 0): number {
-    if (array == null) {
+    if (array == null || array == undefined) {
       return ArrayUtils.INDEX_NOT_FOUND;
     }
     if (startIndex < 0) {
@@ -244,7 +268,7 @@ export class ArrayUtils {
   }
 
   static lastIndexOf<T>(array: T[], objectToFind: T, startIndex: number = Number.MAX_VALUE): number {
-    if (array == null) {
+    if (array == null || array == undefined) {
       return ArrayUtils.INDEX_NOT_FOUND;
     }
     let len = ArrayUtils.getLength(array);
@@ -274,7 +298,9 @@ export class ArrayUtils {
   }
 
   static sort<T>(array: T[], comparator: (a: T, b: T) => number) {
-    if (array == null || array.length < 2) return;
+    if (array == null || array == undefined || array.length < 2) {
+      return;
+    }
     array.sort(comparator);
   }
 }
