@@ -14,6 +14,7 @@
 */
 
 export { CleanUtils } from './src/main/ets/utils/CleanUtils'
+export { ArrayUtils } from './src/main/ets/utils/ArrayUtils'
 export { LocationUtils } from './src/main/ets/utils/LocationUtils'
 export { myLocationListener } from './src/main/ets/utils/LocationUtils'
 export { OnLocationChangeListener } from './src/main/ets/utils/LocationUtils'

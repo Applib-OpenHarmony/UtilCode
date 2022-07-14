@@ -57,6 +57,7 @@
         "pages": [
           "pages/index",
           "pages/CleanUtilsSample",
+          "pages/ArrayUtilsSample",
           "pages/LocationUtilsSample"
         ],
         "name": ".MainAbility",
